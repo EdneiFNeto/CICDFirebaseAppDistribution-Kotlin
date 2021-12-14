@@ -28,6 +28,7 @@ Como recomendacao do Google e necessario criar um arquivo para manipulas os dado
 
 Realizar a configuracao do gradle, usando os imports da lib do Firebase, o tipo de build e a configuracao do arquivo JKS.
 
+
 ```build.gradle
 //Project
 buildscript {
@@ -68,7 +69,7 @@ android {
 
             firebaseAppDistribution {
                 appId="ID_DO_APLICATIVO"
-                releaseNotesFile="app/releasenotes.txt"
+                releaseNotesFile="app/releasenotes.txt" //Deve criar este arquivo para adicionar as notas da versao
                 groups="NOME_DO_GRUPO_DE_TESTE_CRIADO_NA_OPCAO_APP_DISTRIBUTION"
                 serviceCredentialsFile="app/service-accout-firebase.json"
             }
@@ -88,6 +89,7 @@ dependencies {
 Comando assinatura e deploy no Firebase App Distribuition.
 
 - ./gradlew assembleRelease appDistributionUploadRelease
+- [Documentacao](https://firebase.google.com/docs/app-distribution/android/distribute-gradle)
 
 
 
