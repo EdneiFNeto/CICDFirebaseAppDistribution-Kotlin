@@ -1,11 +1,12 @@
 # CICD - FirebaseApp Distribution
 
-Aplicativo utilizado para realizar a parte de CICD usando o Firebase App Distribution, e assim realizar o deploy automatico da aplicacao.
+Aplicativo utilizado para realizar a parte de CICD usando o Firebase App Distribution, e assim realizar o deploy automático da aplicação.
 
 ## Keystore Properties
 
-Como recomendacao do Google e necessario criar um arquivo para manipulas os dados da keyStore, porem antes e necessario criar o jks usando o terminal:
+Como recomendação do Google e necessário criar um arquivo para manípulas os dados da keyStore, porem antes é necessário criar o jks usando o terminal:
 - keytool -genkey -v -keystore hello.jks -alias hello -keyalg RSA -keysize 2048 -validity 10000
+- Criar o arquivo keystore.properties
 - OBS: Apos rodar o comando vai criar o arquivo .jks entao deve ser movido para dentro da pasta "app"
 
 ```keystore.properties
@@ -16,18 +17,18 @@ Como recomendacao do Google e necessario criar um arquivo para manipulas os dado
 ```
 
 ## Arquivo service-accout-firebase.json
-- Acessar No Console do [Google Cloud Platform](https://console.cloud.google.com/projectselector2/iam-admin/serviceaccounts).
+- Acessar no Console do [Google Cloud Platform](https://console.cloud.google.com/projectselector2/iam-admin/serviceaccounts).
 - Selecionar o projeto
-- Criar uma conta de servico
-- Preencher o formulario "Detalhes da Conta de Servico", clicar em continuar
-- Conceda a essa conta de serviço acesso ao projeto no campo selecionar papel escolha a opcao "administrador do Firebase App Distribution - Agente de servico do SDK Admin de distribuicao de aplicativo do Firebase - Acesso de leitura como SDK Admin".
-- Documentacao [Usar Gradle](https://firebase.google.com/docs/app-distribution/android/distribute-gradle) na opcao Usar as credenciais da conta de servico do Firebase. 
+- Criar uma conta de serviço
+- Preencher o formulário "Detalhes da Conta de Serviço", clicar em continuar
+- Conceda a essa conta de serviço acesso ao projeto no campo selecionar papel escolha a opção "administrador do Firebase App Distribution - Agente de serviço do SDK Admin de distribuição de aplicativo do Firebase - Acesso de leitura como SDK Admin".
+- Documentação [Usar Gradle](https://firebase.google.com/docs/app-distribution/android/distribute-gradle) na opção Usar as credenciais da conta de serviço do Firebase. 
 - Adicionar o arquivo .json na pasta /app
 
 ## Configuracao do gradle
 
-Realizar a configuracao do gradle, usando os imports da lib do Firebase, o tipo de build e a configuracao do arquivo JKS.
-
+Realizar a configuração do gradle, usando os imports da lib do Firebase, o tipo de build e a configuração do arquivo JKS.
+- Criar o arquivo releasenotes.txt com as notas das versões. 
 
 ```build.gradle
 //Project
@@ -69,7 +70,7 @@ android {
 
             firebaseAppDistribution {
                 appId="ID_DO_APLICATIVO"
-                releaseNotesFile="app/releasenotes.txt" //Deve criar este arquivo para adicionar as notas da versao
+                releaseNotesFile="app/releasenotes.txt" 
                 groups="NOME_DO_GRUPO_DE_TESTE_CRIADO_NA_OPCAO_APP_DISTRIBUTION"
                 serviceCredentialsFile="app/service-accout-firebase.json"
             }
@@ -89,7 +90,7 @@ dependencies {
 Comando assinatura e deploy no Firebase App Distribuition.
 
 - ./gradlew assembleRelease appDistributionUploadRelease
-- [Documentacao](https://firebase.google.com/docs/app-distribution/android/distribute-gradle)
+- [Documentação](https://firebase.google.com/docs/app-distribution/android/distribute-gradle)
 
 
 
