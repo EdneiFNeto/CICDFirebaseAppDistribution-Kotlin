@@ -8,6 +8,7 @@ Como recomendação do Google e necessário criar um arquivo para manípulas os 
 - keytool -genkey -v -keystore hello.jks -alias hello -keyalg RSA -keysize 2048 -validity 10000
 - Criar o arquivo keystore.properties
 - OBS: Apos rodar o comando vai criar o arquivo .jks entao deve ser movido para dentro da pasta "app"
+- [Referencia-Publish-App](https://developer.android.com/studio/publish/app-signing)
 
 ```keystore.properties
    storePassword=SENHA
