@@ -95,6 +95,47 @@ Comando assinatura e deploy no Firebase App Distribuition.
 
 
 
+## Criando Env
+Para criar variáveis de ambiente para facilitar a segurança do projeto, basta seguir os passos a baixio:
 
+- Abrir terminal
+- Execute o comando: nano ~/.zshrc
+
+Apos abrir o arquivo .zshrc vai até a parte de baixo
+
+- export PROJECT_ID=PROJECT_ID (Localiozado das configs. do Firebase)
+- export KEY_API=KEY_API (Key usada realizar a notificacao)
+- export FIREBASE_TOKEN=ID_DO_APLICATIVO
+- export JKS_FILE=/Users/USER_PROFILE/PROJECT_PATHr/app/file.jks
+
+```build.gradle
+   buildTypes {
+        def KEY_API = System.getenv("KEY_API")
+        def PROJECT_ID = System.getenv("PROJECT_ID")
+        def FIREBASE_TOKEN = System.getenv("FIREBASE_TOKEN")
+
+        debug {
+            buildConfigField('String', 'KEY_API', '"' + KEY_API + '"')
+            buildConfigField('String', 'PROJECT_ID', '"' + PROJECT_ID + '"')
+        }
+
+        release {
+            buildConfigField('String', 'KEY_API', '"' + KEY_API + '"')
+            buildConfigField('String', 'PROJECT_ID', '"' + PROJECT_ID + '"')
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            signingConfig signingConfigs.release
+
+            firebaseAppDistribution {
+                appId = buildConfigField('String', 'FIREBASE_TOKEN', '"' + FIREBASE_TOKEN + '"')
+                releaseNotesFile = "app/releasenotes.txt"
+                groups = "Teste"
+                serviceCredentialsFile = "app/service-accout-firebase.json"
+            }
+        }
+    }
+ ```
 
 
