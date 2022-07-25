@@ -137,5 +137,8 @@ Apos abrir o arquivo .zshrc vai até a parte de baixo
         }
     }
  ```
+ 
+ ## Key SHA256
+ - ./gradlew signingReport
 
 
